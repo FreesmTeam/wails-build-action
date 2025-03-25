@@ -192,8 +192,10 @@ runs:
       shell: bash
     - name: Install bun
       run: npm install -g bun
+      shell: bash
     - name: Run Wails doctor
       run: wails doctor
+      shell: bash
     # Building step
     - name: Build App
       if: inputs.build == 'true'
