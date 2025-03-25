@@ -1,4 +1,4 @@
-name: "Wails Build Action"
+оname: "Wails Build Action"
 description: "Creates a wails binary"
 branding:
   icon: 'box'
@@ -121,11 +121,11 @@ runs:
         sudo apt-get -yq update
         DISTRO=$(lsb_release -rs) # Get the distribution version (e.g., "22.04", "24.04")
         if [[ "$DISTRO" == "20.04" ]]; then
-          sudo apt-get -yq install libgtk-3-0 libwebkit2gtk-4.0-dev gcc-aarch64-linux-gnu
+          sudo apt-get -yq install libgtk-3-0 libwebkit2gtk-4.0-dev gcc-aarch64-linux-gnu unzip
         elif [[ "$DISTRO" == "22.04" ]]; then
-          sudo apt-get -yq install libgtk-3-0 libwebkit2gtk-4.0-dev gcc-aarch64-linux-gnu
+          sudo apt-get -yq install libgtk-3-0 libwebkit2gtk-4.0-dev gcc-aarch64-linux-gnu unzip
         elif [[ "$DISTRO" == "24.04" ]]; then
-          sudo apt-get -yq install libgtk-3-0 libwebkit2gtk-4.1-dev gcc-aarch64-linux-gnu
+          sudo apt-get -yq install libgtk-3-0 libwebkit2gtk-4.1-dev gcc-aarch64-linux-gnu unzip
         else
           echo "Unsupported Linux distribution: $DISTRO"
           exit 1 # Fail the workflow if the distribution is not supported
@@ -190,9 +190,10 @@ runs:
       if: runner.os == 'macOS'
       run: brew install mitchellh/gon/gon
       shell: bash
+    - name: Install bun
+      run: npm install -g bun
     - name: Run Wails doctor
       run: wails doctor
-      shell: bash
     # Building step
     - name: Build App
       if: inputs.build == 'true'
