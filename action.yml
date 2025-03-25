@@ -190,6 +190,9 @@ runs:
       if: runner.os == 'macOS'
       run: brew install mitchellh/gon/gon
       shell: bash
+    - name: Run Wails doctor
+      run: wails doctor
+      shell: bash
     # Building step
     - name: Build App
       if: inputs.build == 'true'
